@@ -1,0 +1,132 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "modules-left": [
+        "sway/workspaces",
+        "custom/arrow-unfocused-transparent"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "custom/disk-home#disk",
+        "wireplumber",
+        "custom/arrow-network",
+        "network",
+        "custom/arrow-memory",
+        "memory",
+        "custom/arrow-battery",
+        "battery",
+        "custom/arrow-language",
+        "sway/language",
+        "tray",
+        "clock#date",
+        "custom/arrow-time",
+        "clock#time"
+    ],
+
+    "custom/disk-home#disk": {
+		"format": "/bloat {}",
+		"interval": 30,
+		"exec": "df -h --output=used / | tail -1 | tr -d ' '"
+	},
+
+    "wireplumber": {
+        "format": " | VOL {volume}% "
+    },
+
+    "sway/workspaces": {
+        "format": "{icon}"
+    },
+    "sway/window": {
+        "max-length": 200,
+        "separate-outputs": true
+    },
+
+    "tray": {
+        "icon-size": 18
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": "Disconnected",
+        "format-alt": " {ipaddr}/{cidr}",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 5,
+        "format": " {used:0.1f}G",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "tooltip": false
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+
+    "clock#time": {
+        "interval": 10,
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+
+    "clock#date": {
+        "interval": 20,
+        "format": "{:%e %b %Y}",
+        "tooltip": false
+    },
+
+    "custom/arrow-time": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-layout": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-battery": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-language": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-memory": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-network": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-sound": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-sound-transparent": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow-unfocused-transparent": {
+        "format": "",
+        "tooltip": false
+    }
+}

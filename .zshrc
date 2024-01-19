@@ -44,33 +44,28 @@ adb-get-ip() {
 }
 
 adb-connect() {
-    # PORT=34561
     IP=$(adb-get-ip)
     echo $IP
     PORT=$(nmap $IP -p 37000-44000 | awk "/\/tcp/" | cut -d/ -f1)
-    # adb tcpip $PORT
     adb connect $IP:$PORT
 }
 
 source /usr/share/nvm/init-nvm.sh
 
 # pnpm
-export PNPM_HOME="/home/mikhail/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-export LOCAL_BIN="/home/mikhail/.local/bin/"
+
+export LOCAL_BIN="$HOME/.local/bin/"
 export PATH="$LOCAL_BIN:$PATH"
 
-
-# bun completions
-[ -s "/home/mikhail/.bun/_bun" ] && source "/home/mikhail/.bun/_bun"
-
 # bun
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-alias config='/usr/bin/git --git-dir=/home/mikhail/dotfiles --work-tree=/home/mikhail'
+alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
 

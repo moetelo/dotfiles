@@ -164,8 +164,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl set 10%-
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym $mod+F7 exec brightnessctl set 10%-
 bindsym $mod+F8 exec brightnessctl set 10%+
 bindsym $mod+F11 exec ddcutil setvcp 10 --bus 8 - 10

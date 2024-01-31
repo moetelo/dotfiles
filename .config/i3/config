@@ -14,7 +14,7 @@ client.unfocused #373B41 #373B41 #888888 #292d2e   #222222
 default_border pixel 3
 default_floating_border pixel 1
 
-gaps inner 2
+# gaps inner 2
 gaps outer 0
 
 
@@ -26,22 +26,6 @@ gaps outer 0
 # alert = #A54242
 # disabled = #707880
 
-exec_always --no-startup-id picom &
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -51,7 +35,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # change focus VIM
@@ -128,6 +112,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
+# bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:./rofi-power-menu
 
 
 mode "resize" {
@@ -154,8 +139,6 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 
 bindsym --release Print exec --no-startup-id spectacle --background --current --copy-image
 bindsym --release $mod+Shift+S exec --no-startup-id spectacle --background --region --copy-image
-# bindsym --release Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-# bindsym --release $mod+Shift+S exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -174,17 +157,17 @@ bindsym $mod+F12 exec ddcutil setvcp 10 --bus 8 + 10
 exec_always xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
 exec_always xinput --set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -1
 
-exec xsetroot -solid black
+exec_always --no-startup-id xlayoutdisplay --dpi 96
+exec_always --no-startup-id $HOME/.fehbg
 
-exec_always xlayoutdisplay --dpi 96
-# exec_always feh --bg-scale ~/Pictures/Levitan_u_omuta.jpg
-exec_always feh --bg-scale ~/Pictures/pixel-toyota.png
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id picom
 
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
 
-exec_always $HOME/.config/polybar/launch.sh
 exec --no-startup-id dunst
 exec --no-startup-id solaar --window=hide
 exec --no-startup-id nm-applet
-
-# exec_always --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id unclutter
 

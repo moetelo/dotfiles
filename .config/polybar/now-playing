@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
+PLAYER=spotify_player
+
 now_playing() {
-    status=$(playerctl status --player=spotify)
+    status=$(playerctl status --player=$PLAYER)
 
     if [ "$status" == "" ]; then
         return
     fi
 
-    title=$(playerctl --player=spotify metadata xesam:title)
-    artist=$(playerctl --player=spotify metadata xesam:artist)
+    artist=$(playerctl --player=$PLAYER metadata xesam:artist)
+    title=$(playerctl --player=$PLAYER metadata xesam:title)
 
     if [ "$status" == "Playing" ]; then
-        # ▷
-        echo "🎵$artist — $title"
+        echo "$artist — $title"
     elif [ "$status" == "Paused" ]; then
         echo "▐▐ $artist — $title"
     else
@@ -21,3 +22,4 @@ now_playing() {
 }
 
 now_playing
+

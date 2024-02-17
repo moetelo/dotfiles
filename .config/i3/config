@@ -13,6 +13,7 @@ client.unfocused #373B41 #373B41 #888888 #292d2e   #222222
 
 default_border pixel 3
 default_floating_border pixel 1
+hide_edge_borders smart
 
 # gaps inner 2
 gaps outer 0
@@ -72,8 +73,7 @@ bindsym $mod+Shift+i layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Define names for default workspaces.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -137,8 +137,11 @@ bindsym $mod+r mode "resize"
 bindsym $mod+e exec --no-startup-id nemo
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
-bindsym --release Print exec --no-startup-id spectacle --background --current --copy-image
-bindsym --release $mod+Shift+S exec --no-startup-id spectacle --background --region --copy-image
+# scrot -e 'xclip -selection clipboard -t image/png -i $f && rm $f'
+bindsym --release Print exec --no-startup-id i3-scrot --desk-to-clipboard
+
+# scrot -s -e 'xclip -selection clipboard -t image/png -i $f && rm $f'
+bindsym --release $mod+Shift+S exec --no-startup-id i3-scrot --select-to-clipboard
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -154,8 +157,9 @@ bindsym $mod+F8 exec brightnessctl set 10%+
 bindsym $mod+F11 exec ddcutil setvcp 10 --bus 8 - 10
 bindsym $mod+F12 exec ddcutil setvcp 10 --bus 8 + 10
 
-exec_always xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
-exec_always xinput --set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -1
+exec_always --no-startup-id xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
+exec_always --no-startup-id xinput --set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -1
+exec_always --no-startup-id numlockx on
 
 exec_always --no-startup-id xlayoutdisplay --dpi 96
 exec_always --no-startup-id $HOME/.fehbg

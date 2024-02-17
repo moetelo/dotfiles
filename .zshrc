@@ -15,8 +15,8 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 source ~/scripts/proxy-utils.sh
 source ~/scripts/adb-utils.sh
 source ~/scripts/nnn-utils.sh
+source ~/scripts/think.sh
 
-. /etc/profile.d/fzf.zsh
 source ~/scripts/fzf-utils.sh
 
 export PNPM_HOME="$HOME/.local/share/pnpm/"
@@ -28,4 +28,5 @@ bindkey '^H' backward-kill-word
 
 alias ll='ls -la'
 alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
+
 

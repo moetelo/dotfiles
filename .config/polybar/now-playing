@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
-PLAYER=spotify_player
-
 now_playing() {
-    status=$(playerctl status --player=$PLAYER)
+    status=$(playerctl status)
 
     if [ "$status" == "" ]; then
         return
     fi
 
-    artist=$(playerctl --player=$PLAYER metadata xesam:artist)
-    title=$(playerctl --player=$PLAYER metadata xesam:title)
+    artist=$(playerctl metadata xesam:artist)
+    title=$(playerctl metadata xesam:title)
 
     if [ "$status" == "Playing" ]; then
         echo "$artist — $title"

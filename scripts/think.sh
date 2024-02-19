@@ -38,8 +38,9 @@ think-move-unchecked() {
     echo "$target_file"
 
     # Find lines starting with '- [ ]' and move them to target file
-    grep -Pzo '\s*- \[ \].+((\n\s+).+)*' "$source_file" >> "$target_file"
-    sed -i "/$regex/d" "$source_file"
+    regex='\s*- \[ \].+((\n\s+).+)*'
+    grep -Pzo $regex "$source_file" >> "$target_file"
+    perl -0777 -i -pe "s/$regex//g" "$source_file"
 }
 
 # compdef _think think

@@ -39,7 +39,7 @@ think-move-unchecked() {
 
     # Find lines starting with '- [ ]' and move them to target file
     regex='\s*- \[ \].+((\n\s+).+)*'
-    grep -Pzo $regex "$source_file" >> "$target_file"
+    grep -Pzo "$regex" "$source_file" | tr -d '\000' >> "$target_file"
     perl -0777 -i -pe "s/$regex//g" "$source_file"
 }
 

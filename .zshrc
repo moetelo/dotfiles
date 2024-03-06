@@ -29,7 +29,8 @@ source ~/scripts/fzf-utils.sh
 export PNPM_HOME="$HOME/.local/share/pnpm/"
 export CARGO_HOME="$HOME/.cargo/bin/"
 export LOCAL_BIN="$HOME/.local/bin/"
-export PATH="$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
+export FNM_BIN="$HOME/.local/share/fnm/"
+export PATH="$FNM_BIN:$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
 
 bindkey '^H' backward-kill-word
 
@@ -37,9 +38,6 @@ alias ll='ls -la'
 alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
 alias grep='grep --color=auto'
 
-
-# fnm
-export PATH="/home/mikhail/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

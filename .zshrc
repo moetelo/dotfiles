@@ -1,13 +1,20 @@
 #!/bin/env bash
 
+source /usr/share/zsh/share/antigen.zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle wbingli/zsh-wakatime
+export ZSH_WAKATIME_PROJECT_DETECTION=true
+
+antigen theme geometry-zsh/geometry
+
+antigen apply
+
+zstyle ':completion::complete:*' gain-privileges 1
+
 export LC_ALL=en_US.UTF-8
 export EDITOR='nvim'
 
-ZSH_THEME="agnoster"
-
-if [ "$TERM" = "linux" ]; then
-    ZSH_THEME="robbyrussell"
-fi
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 plugins=(sudo git)
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -28,5 +35,12 @@ bindkey '^H' backward-kill-word
 
 alias ll='ls -la'
 alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
+alias grep='grep --color=auto'
 
+
+# fnm
+export PATH="/home/mikhail/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

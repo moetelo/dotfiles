@@ -18,15 +18,7 @@ hide_edge_borders smart
 # gaps inner 2
 gaps outer 0
 
-
-# background = #282A2E
-# background-alt = #373B41
-# foreground = #C5C8C6
-# primary = #F0C674
-# secondary = #8ABEB7
-# alert = #A54242
-# disabled = #707880
-
+focus_on_window_activation none
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -112,33 +104,15 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
-# bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:./rofi-power-menu
-
-
-mode "resize" {
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
-
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 # Custom
 bindsym $mod+e exec --no-startup-id nemo
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:./rofi-power-menu
 
 bindsym --release Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym --release $mod+Shift+S exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym --release $mod+Shift+S exec --no-startup-id flameshot gui
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -167,6 +141,7 @@ exec_always --no-startup-id picom
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id greenclip daemon
 exec --no-startup-id dunst
 exec --no-startup-id solaar --window=hide
 exec --no-startup-id nm-applet

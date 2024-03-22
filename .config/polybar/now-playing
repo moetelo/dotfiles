@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 now_playing() {
-    status=$(playerctl status)
+    status=$(playerctl status 2>&1)
 
-    if [ "$status" == "" ]; then
+    if [ "$status" == "No players found" ]; then
+        echo ""
         return
     fi
 
-    artist=$(playerctl metadata xesam:artist)
-    title=$(playerctl metadata xesam:title)
+    artist=$(playerctl metadata xesam:artist 2>&1)
+    title=$(playerctl metadata xesam:title 2>&1)
 
     if [ "$status" == "Playing" ]; then
         echo "$artist — $title"
     elif [ "$status" == "Paused" ]; then
         echo "▐▐ $artist — $title"
     else
-        echo "$status"
+        echo "Status: $status"
     fi
 }
 

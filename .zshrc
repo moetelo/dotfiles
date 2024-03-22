@@ -30,7 +30,8 @@ export PNPM_HOME="$HOME/.local/share/pnpm/"
 export CARGO_HOME="$HOME/.cargo/bin/"
 export LOCAL_BIN="$HOME/.local/bin/"
 export FNM_BIN="$HOME/.local/share/fnm/"
-export PATH="$FNM_BIN:$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
+export SCRIPTS_BIN="$HOME/scripts/bin/"
+export PATH="$SCRIPTS_BIN:$FNM_BIN:$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
 
 bindkey '^H' backward-kill-word
 
@@ -41,4 +42,8 @@ alias grep='grep --color=auto'
 eval "`fnm env`"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# tabtab source for packages
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 

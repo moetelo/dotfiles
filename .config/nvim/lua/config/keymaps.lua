@@ -8,3 +8,11 @@ vim.keymap.set('n', '<CR>', think.md.toggle_checkbox)
 -- stylua: ignore
 vim.keymap.set('v', '//', 'y/\\V<C-R>=escape(@",\'/\\\\\')<CR><CR>')
 
+vim.keymap.set('n', '<Esc>', function()
+  vim.cmd 'Noice dismiss'
+  vim.cmd 'nohl'
+end, { desc = 'Clear notifications and search' })
+
+vim.keymap.set('n', '<C-ы>', '<cmd> w <CR>')
+vim.keymap.set('i', '<C-ы>', '<ESC><cmd> w <CR>')
+

@@ -10,4 +10,3 @@ adb-connect() {
     PORT=$(nmap $IP -p 37000-44000 | awk "/\/tcp/" | cut -d/ -f1)
     adb connect $IP:$PORT
 }
-

@@ -1,7 +1,8 @@
 #!/bin/env bash
 
 fzf-pacman-uninstaller() {
-    pacman -Qeq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns
+    packages=$(expac --timefmt='%Y-%m-%d %T' '%l\t%n' | grep -F "$(pacman -Qeq)" | sort --reverse | awk '{print $3}')
+    echo "$packages" | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns
 }
 
 fzf-git-branch-deleter() {

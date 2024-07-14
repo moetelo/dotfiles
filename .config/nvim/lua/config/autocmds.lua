@@ -4,14 +4,21 @@
 
 -- http://www.lazyvim.org/configuration/tips
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  -- pattern = { 'lua' },
-  callback = function()
-    vim.b.autoformat = false
-    vim.opt_local.spell = false
-  end,
+    -- pattern = { 'lua' },
+    callback = function()
+        vim.b.autoformat = false
+        vim.opt_local.spell = false
+    end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*' },
-  command = [[%s/\s\+$//e]],
+    pattern = { '*' },
+    command = [[%s/\s\+$//e]],
 })
+
+vim.lsp.set_log_level('info')
+
+vim.api.nvim_set_option(
+    'langmap',
+    'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+)

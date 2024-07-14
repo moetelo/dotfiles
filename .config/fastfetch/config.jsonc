@@ -20,8 +20,8 @@
     "terminalfont",
     "memory",
     {
-        "type": "disk",
-        "folders": "/:/home"
+      "type": "disk",
+      "folders": "/:/home"
     },
     "break",
     "colors"

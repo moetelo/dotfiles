@@ -1,7 +1,8 @@
-#!/bin/env bash
+#!/bin/bash
 
 think() {
     if [[ -z "$1" ]]; then
+        think-move-unchecked
         $EDITOR $HOME/thoughts/$(date --iso-8601).md
         return
     fi
@@ -22,7 +23,10 @@ think() {
 }
 
 previous-thought() {
-    ls "$HOME/thoughts/" -1 | tail -2 | grep -v "$(date --iso-8601).md" | tail -1
+    # ls "$HOME/thoughts/$md_glob" -1 | tail -2 | grep -v "$(date --iso-8601).md" | tail -1
+
+    # kinda bloated although we cant extend globs in zsh
+    find "$HOME/thoughts" -name '*-*-*.md' -type f -printf "%f\n" | sort -n | tail -2 | grep -v "$(date --iso-8601).md" | tail -1
 }
 
 think-move-unchecked() {

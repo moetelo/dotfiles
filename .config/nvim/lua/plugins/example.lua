@@ -3,6 +3,9 @@
 local is_proxy_set = vim.env.https_proxy ~= nil or vim.env.http_proxy ~= nil
 
 return {
+    { "rcarriga/nvim-notify", enabled = false },
+    { "folke/todo-comments.nvim", enabled = false },
+
     { 'copilot-cmp', enabled = is_proxy_set },
     {
         'neanias/everforest-nvim',
@@ -46,16 +49,6 @@ return {
         lazy = false,
     },
 
-    -- override nvim-cmp and add cmp-emoji
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = { 'hrsh7th/cmp-emoji' },
-        ---@param opts cmp.ConfigSchema
-        opts = function(_, opts)
-            table.insert(opts.sources, { name = 'emoji' })
-        end,
-    },
-
     {
         'nvim-telescope/telescope.nvim',
         keys = {
@@ -79,10 +72,22 @@ return {
             ---@type lspconfig.options
             servers = {
                 pyright = {},
-                twiggy_language_server = {},
+                twiggy_language_server = {
+                  settings = {
+                    twiggy = {
+                      framework = 'symfony',
+                      phpExecutable = 'php-legacy',
+                      symfonyConsolePath = 'bin/console',
+                    },
+                  },
+                },
+                volar = {},
                 html = {},
                 cssls = {},
             },
+            setup = function()
+                require('lspconfig').volar.setup({})
+            end,
         },
     },
 
@@ -93,8 +98,8 @@ return {
             'jose-elias-alvarez/typescript.nvim',
             init = function()
                 require('lazyvim.util').lsp.on_attach(function(_, buffer)
-          -- stylua: ignore
-          vim.keymap.set("n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+                    -- stylua: ignore
+                    vim.keymap.set("n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
                     vim.keymap.set('n', '<leader>cR', 'TypescriptRenameFile', { desc = 'Rename File', buffer = buffer })
                 end)
             end,
@@ -104,7 +109,7 @@ return {
             ---@type lspconfig.options
             servers = {
                 -- tsserver will be automatically installed with mason and loaded with lspconfig
-                tsserver = {},
+                tsserver = { settings = {} },
             },
             -- you can do any additional lsp server setup here
             -- return true if you don't want this server to be setup with lspconfig
@@ -144,6 +149,7 @@ return {
                 'yaml',
                 'twig',
                 'vue',
+                'scss',
             },
         },
     },
@@ -171,15 +177,6 @@ return {
             },
         },
     },
-
-    -- Use <tab> for completion and snippets (supertab)
-    -- first: disable default <tab> and <s-tab> behavior in LuaSnip
-    -- {
-    --     'L3MON4D3/LuaSnip',
-    --     keys = function()
-    --         return {}
-    --     end,
-    -- },
 
     -- then: setup supertab in cmp
     {

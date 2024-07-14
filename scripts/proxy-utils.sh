@@ -34,6 +34,6 @@ wtf-ip() {
 }
 
 if [[ -f ~/.cache/proxy_state && `cat ~/.cache/proxy_state` == 'on' ]]; then
-  proxy-on
+    proxy-on
 fi
 

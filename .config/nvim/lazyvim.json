@@ -2,12 +2,13 @@
   "extras": [
     "lazyvim.plugins.extras.coding.copilot",
     "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.php",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint"
   ],
   "news": {
-    "NEWS.md": "6077"
+    "NEWS.md": "6296"
   },
   "version": 6
 }

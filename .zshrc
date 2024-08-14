@@ -7,6 +7,7 @@ export ZSH_WAKATIME_PROJECT_DETECTION=true
 antigen apply
 
 zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' list-prompt ''
 
 export EDITOR='nvim'
 
@@ -35,24 +36,18 @@ export PATH="$SCRIPTS_BIN:$FNM_BIN:$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
 
 bindkey '^H' backward-kill-word
 
-alias ll='ls -la'
+alias ls='eza'
+alias ll='eza -la'
 alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
 alias grep='grep --color=auto'
-alias php='php-legacy'
-alias phpize='phpize-legacy'
 
 eval "`fnm env`"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
 # tabtab source for packages
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-
-# bun completions
-[ -s "/home/mikhail/.bun/_bun" ] && source "/home/mikhail/.bun/_bun"
-
-# bun
 export BUN_INSTALL="$HOME/.bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

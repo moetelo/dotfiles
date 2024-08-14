@@ -25,8 +25,8 @@ think() {
 previous-thought() {
     # ls "$HOME/thoughts/$md_glob" -1 | tail -2 | grep -v "$(date --iso-8601).md" | tail -1
 
-    # kinda bloated although we cant extend globs in zsh
-    find "$HOME/thoughts" -name '*-*-*.md' -type f -printf "%f\n" | sort -n | tail -2 | grep -v "$(date --iso-8601).md" | tail -1
+    # kinda bloated although we cant expand globs in zsh
+    find "$HOME/thoughts" -name '*-*-*.md' -type f -printf "%f\n" | sort -n | tail -2 | grep --invert-match "$(date --iso-8601).md" | tail -1
 }
 
 think-move-unchecked() {
@@ -35,19 +35,18 @@ think-move-unchecked() {
 
     if [[ ! -f "$source_file" ]]; then
         echo "No file to migrate from."
-        return 1
+        return
     fi
 
-    touch "$target_file"
-    echo "$target_file"
+    # Find lines starting with '- [ ]' and move them to the target file
+    local regex='\s*- \[ \].+((\n\s+).+)*'
 
-    # Find lines starting with '- [ ]' and move them to target file
-    regex='\s*- \[ \].+((\n\s+).+)*'
-    grep -Pzo "$regex" "$source_file" | tr -d '\000' >> "$target_file"
+    # sed -n --quiet --regexp-extended "/$regex/ p" start.md
+    # sed -n --quiet --regexp-extended "/$regex/ \!p" start.md
+
+    grep --perl-regexp --null-data --only-matching "$regex" "$source_file" | tr -d '\000' >> "$target_file"
     perl -0777 -i -pe "s/$regex//g" "$source_file"
 }
-
-# compdef _think think
 
 _think() {
     local -a files=(${HOME}/thoughts/*.md(:t:r))

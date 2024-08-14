@@ -132,9 +132,6 @@ exec_always --no-startup-id numlockx on
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-# exec --no-startup-id dex --autostart --environment i3
-
 exec_always xlayoutdisplay --dpi 96 && $HOME/.fehbg
 
 exec --no-startup-id greenclip daemon

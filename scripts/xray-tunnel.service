@@ -1,0 +1,12 @@
+[Unit]
+Description=Xray Tun2socks
+After=network.target
+
+[Service]
+User=root
+Type=idle
+ExecStart=/home/mikhail/scripts/xray-tunnel.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

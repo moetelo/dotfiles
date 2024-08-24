@@ -48,6 +48,8 @@ think-move-unchecked() {
     perl -0777 -i -pe "s/$regex//g" "$source_file"
 }
 
+#compdef think
+
 _think() {
     local -a files=(${HOME}/thoughts/*.md(:t:r))
     local -a options=('yesterday' 'tomorrow')

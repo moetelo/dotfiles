@@ -1,53 +1,44 @@
 #!/bin/env bash
 
-source /usr/share/zsh/share/antigen.zsh
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle wbingli/zsh-wakatime
-export ZSH_WAKATIME_PROJECT_DETECTION=true
-antigen apply
+autoload -Uz compinit; compinit -C
+# Have another thread refresh the cache in the background (subshell to hide output)
+(autoload -Uz compinit; compinit &)
 
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' list-prompt ''
+ZSH_PLUGINS=/usr/share/zsh/plugins
+source $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
-export EDITOR='nvim'
+clear-screen-and-scrollback() {
+    printf '\x1Bc'
+    zle clear-screen
+}
 
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+zle -N clear-screen-and-scrollback
+bindkey '^L' clear-screen-and-scrollback
+bindkey '^H' backward-kill-word
 
 ZSH_THEME=telo
 plugins=(sudo git)
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
+
+export EDITOR='nvim'
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' list-prompt ''
 
 source ~/scripts/proxy-utils.sh
-source ~/scripts/adb-utils.sh
-source ~/scripts/nnn-utils.sh
-source ~/scripts/youtrack-pr.sh
-source ~/scripts/think.sh
-
 source ~/scripts/fzf-utils.sh
-
-source ~/scripts/zsh-completion/symfony.sh
+source ~/scripts/runit-utils.sh
+source ~/scripts/think.sh
 
 export PNPM_HOME="$HOME/.local/share/pnpm/"
 export CARGO_HOME="$HOME/.cargo/bin/"
-export LOCAL_BIN="$HOME/.local/bin/"
-export FNM_BIN="$HOME/.local/share/fnm/"
-export SCRIPTS_BIN="$HOME/scripts/bin/"
-export PATH="$SCRIPTS_BIN:$FNM_BIN:$PNPM_HOME:$CARGO_HOME:$LOCAL_BIN:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+path=("$HOME/scripts/bin/" "~/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $path)
+export PATH
 
-bindkey '^H' backward-kill-word
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
-alias ls='eza'
-alias ll='eza -la'
+alias ls='ls --color=auto'
+alias ll='ls -la'
 alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
 alias grep='grep --color=auto'
-
-eval "`fnm env`"
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# tabtab source for packages
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-export BUN_INSTALL="$HOME/.bun"
-[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

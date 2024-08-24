@@ -122,20 +122,19 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym $mod+F7 exec brightnessctl set 10%-
 bindsym $mod+F8 exec brightnessctl set 10%+
-bindsym $mod+F11 exec ddcutil setvcp 10 --bus 8 - 10
-bindsym $mod+F12 exec ddcutil setvcp 10 --bus 8 + 10
+bindsym $mod+F11 exec ddcutil setvcp 10 --bus 5 - 10
+bindsym $mod+F12 exec ddcutil setvcp 10 --bus 5 + 10
 
-exec_always --no-startup-id xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
-exec_always --no-startup-id xinput --set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -1
-exec_always --no-startup-id numlockx on
+# exec_always --no-startup-id xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
+# exec_always --no-startup-id xinput --set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -1
+# exec_always --no-startup-id numlockx on
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id picom
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id picom
 
-exec_always xlayoutdisplay --dpi 96 && $HOME/.fehbg
+# exec_always xlayoutdisplay --dpi 96 && $HOME/.fehbg
 
-exec --no-startup-id greenclip daemon
-exec --no-startup-id dunst
-exec --no-startup-id solaar --window=hide
-exec --no-startup-id nm-applet
-exec --no-startup-id unclutter
+# exec --no-startup-id greenclip daemon
+# exec --no-startup-id dunst
+# exec --no-startup-id solaar --window=hide
+# exec --no-startup-id unclutter

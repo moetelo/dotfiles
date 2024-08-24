@@ -19,6 +19,7 @@
     "terminal",
     "terminalfont",
     "memory",
+    "swap",
     {
       "type": "disk",
       "folders": "/:/home"

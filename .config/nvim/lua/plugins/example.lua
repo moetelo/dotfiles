@@ -1,12 +1,43 @@
--- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
-
 local is_proxy_set = vim.env.https_proxy ~= nil or vim.env.http_proxy ~= nil
 
 return {
-    { "rcarriga/nvim-notify", enabled = false },
-    { "folke/todo-comments.nvim", enabled = false },
-
+    { 'rcarriga/nvim-notify', enabled = false },
+    { 'folke/todo-comments.nvim', enabled = false },
     { 'copilot-cmp', enabled = is_proxy_set },
+
+    {
+        'folke/noice.nvim',
+        enabled = false,
+        opts = {
+            cmdline = {
+                view = 'cmdline',
+            },
+
+            messages = {
+                view = 'mini',
+            },
+        },
+        keys = {
+            { '<Esc>', '<cmd>Noice dismiss<cr>' },
+        },
+    },
+
+
+    {
+        'echasnovski/mini.surround',
+        opts = {
+            mappings = {
+                add = 'gsa',
+                delete = 'gsd',
+                find = 'gswf',
+                find_left = 'gsF',
+                highlight = 'gsh',
+                replace = 'gsr',
+                update_n_lines = 'gsn',
+            },
+        },
+    },
+
     {
         'neanias/everforest-nvim',
         config = function()
@@ -28,19 +59,6 @@ return {
         keys = {
             { '<Tab>', '<cmd>BufferLineCycleNext<cr>' },
             { '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>' },
-        },
-    },
-
-    {
-        'folke/noice.nvim',
-        opts = {
-            cmdline = {
-                view = 'cmdline',
-            },
-
-            messages = {
-                view = 'mini',
-            },
         },
     },
 
@@ -72,15 +90,16 @@ return {
 
             ---@type lspconfig.options
             servers = {
+                gopls = {},
                 pyright = {},
                 twiggy_language_server = {
-                  settings = {
-                    twiggy = {
-                      framework = 'symfony',
-                      phpExecutable = 'php-legacy',
-                      symfonyConsolePath = 'bin/console',
+                    settings = {
+                        twiggy = {
+                            framework = 'symfony',
+                            phpExecutable = 'php',
+                            symfonyConsolePath = 'bin/console',
+                        },
                     },
-                  },
                 },
                 volar = {},
                 html = {},
@@ -102,6 +121,7 @@ return {
         opts = {
             ensure_installed = {
                 'bash',
+                'go',
                 'html',
                 'javascript',
                 'json',

@@ -28,8 +28,40 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
+
+setup_screen() {
+    xlayoutdisplay --dpi 96
+    $HOME/.fehbg
+}
+
+enable_wifi() {
+    iwctl adapter phy0 set-property Powered on
+    iwctl device wlan0 set-property Powered on
+}
+
+/usr/bin/pipewire &
+/usr/bin/pipewire-pulse &
+/usr/bin/wireplumber &
+enable_wifi &
+
+# x
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
-exec i3
+xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
 
+numlockx on &
+picom -b &
+
+setup_screen &
+greenclip daemon &
+dunst &
+solaar --window=hide &
+unclutter &
+
+exec ~/scripts/bin/bar.sh &
+xlayoutdisplay --dpi 96 &
+
+while type dwm >/dev/null; do
+    dwm && continue || read
+done

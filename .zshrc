@@ -27,7 +27,6 @@ zstyle ':completion:*' list-prompt ''
 
 source ~/scripts/proxy-utils.sh
 source ~/scripts/fzf-utils.sh
-source ~/scripts/runit-utils.sh
 source ~/scripts/think.sh
 
 export PNPM_HOME="$HOME/.local/share/pnpm/"

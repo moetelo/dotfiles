@@ -2,8 +2,8 @@
 
 proxy-on() {
   local HOST=127.0.0.1
-  export {http,https}_proxy=$HOST:10809
-  export all_proxy=$HOST:10809
+  export {http,https}_proxy=$HOST:10708
+  export all_proxy=$HOST:10708
 
   echo "on" > ~/.cache/proxy_state
 }

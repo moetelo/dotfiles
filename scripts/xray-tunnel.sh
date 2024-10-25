@@ -2,30 +2,46 @@
 
 set -eo pipefail
 
-XRAY_CONFIG_PATH="/etc/xray/client7.json"
+XRAY_CONFIG_PATH=$1
+if [ -z "$XRAY_CONFIG_PATH" ]; then
+    echo "Usage: $0 <path to xray config>"
+    exit 1
+fi
 
-xray_ip=$(jq -r '.outbounds[0].settings.vnext[0].address' < $XRAY_CONFIG_PATH)
-socks_inbound=$(jq -r '.inbounds[]|select(.protocol =="socks")|"\(.listen):\(.port)"' < $XRAY_CONFIG_PATH)
+# Fix inbounds that conflict with the service
+# (assumes that inbound[0] is socks and inbound[1] is http, which is redundant for the tunnel)
+tunnel_xray_config=$(jq '.inbounds[0].port = 10008 | del(.inbounds[1])' "$XRAY_CONFIG_PATH")
 
-def_gate=$(ip route show default | awk '{print$3}')
+xray_ip=$(jq -r '.outbounds[0].settings.vnext[0].address' <<< "$tunnel_xray_config")
+socks_inbound=$(jq -r '.inbounds[]|select(.protocol =="socks")|"\(.listen):\(.port)"' <<< "$tunnel_xray_config")
 
-trap_ctrlc() {
-    echo 'trapped ctrl-c, cleaning up...'
-    ip tuntap del dev tun0 mode tun
-    ip route del $xray_ip via $def_gate
+default_ip=$(ip route show default | head -1 | awk '{print $3}')
+default_iface=$(ip route show default | head -1 | awk '{print $5}')
+
+recreate_default_with_metric_10() {
+    ip route del default
+    ip route add default via "$default_ip" dev "$default_iface" metric 10
 }
 
-trap trap_ctrlc EXIT
+cleanup() {
+    echo 'Cleanup...'
+    ip tuntap del dev tun0 mode tun
+    ip route del "$xray_ip" via "$default_ip"
+    recreate_default_with_metric_10
+}
 
-ip tuntap add dev tun0 mode tun user $(whoami)
+trap cleanup SIGINT SIGTERM EXIT
+
+recreate_default_with_metric_10
+
+ip tuntap add dev tun0 mode tun user "$(whoami)"
 ip addr add 10.0.0.1/24 dev tun0
-ip addr add fdfe:dcba:9876::1/125 dev tun0
-ip route add $xray_ip via $def_gate
+ip route add "$xray_ip" via "$default_ip" metric 1
 ip link set tun0 up
 ip -6 link set tun0 up
 ip route add default dev tun0
 ip -6 route add default dev tun0
 
-xray -c $XRAY_CONFIG_PATH > /dev/null &
+xray <<< "$tunnel_xray_config" > /dev/null &
 
-tun2socks -device tun://tun0 -proxy socks5://$socks_inbound
+tun2socks -device tun://tun0 -proxy "socks5://$socks_inbound"

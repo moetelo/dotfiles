@@ -9,8 +9,10 @@ if [ -z "$XRAY_CONFIG_PATH" ]; then
 fi
 
 # Fix inbounds that conflict with the service
-# (assumes that inbound[0] is socks and inbound[1] is http, which is redundant for the tunnel)
-tunnel_xray_config=$(jq '.inbounds[0].port = 10008 | del(.inbounds[1])' "$XRAY_CONFIG_PATH")
+tunnel_xray_config=$(jq '
+  .inbounds |= map(select(.protocol == "socks")) |
+  .inbounds[0].port = 10008
+' "$XRAY_CONFIG_PATH")
 
 xray_ip=$(jq -r '.outbounds[0].settings.vnext[0].address' <<< "$tunnel_xray_config")
 socks_inbound=$(jq -r '.inbounds[]|select(.protocol =="socks")|"\(.listen):\(.port)"' <<< "$tunnel_xray_config")

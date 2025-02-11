@@ -34,34 +34,24 @@ setup_screen() {
     $HOME/.fehbg
 }
 
-enable_wifi() {
-    iwctl adapter phy0 set-property Powered on
-    iwctl device wlan0 set-property Powered on
-}
-
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
 /usr/bin/wireplumber &
-enable_wifi &
 
-# x
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
-xinput --set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
+xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
 
 numlockx on &
-picom -b &
+picom --daemon &
 
-setup_screen &
 greenclip daemon &
 dunst &
-solaar --window=hide &
 unclutter &
+/usr/lib/xfce-polkit/xfce-polkit &
 
-exec ~/scripts/bin/bar.sh &
-xlayoutdisplay --dpi 96 &
+~/scripts/bin/bar.sh &
 
-while type dwm >/dev/null; do
-    dwm && continue || read
-done
+setup_screen
+exec dwm

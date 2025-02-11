@@ -29,15 +29,33 @@ source ~/scripts/proxy-utils.sh
 source ~/scripts/fzf-utils.sh
 source ~/scripts/think.sh
 
+export ANDROID_HOME=/opt/android-sdk/
 export PNPM_HOME="$HOME/.local/share/pnpm/"
 export CARGO_HOME="$HOME/.cargo/bin/"
 export BUN_INSTALL="$HOME/.bun"
-path=("$HOME/scripts/bin/" "~/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $path)
+export GO_BIN="$HOME/go/bin/"
+path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $path)
 export PATH
 
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 alias ls='ls --color=auto'
 alias ll='ls -la'
-alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
 alias grep='grep --color=auto'
+
+sum-num() {
+    declare nums=${*:-$(</dev/stdin)}
+    echo $nums | paste -sd+ - | bc
+}
+
+alias config="/usr/bin/git --git-dir='$HOME/dotfiles' --work-tree=$HOME"
+
+
+# fnm
+FNM_PATH="/home/mikhail/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/mikhail/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+. "/home/mikhail/.cargo/bin/env"
+

@@ -1,0 +1,48 @@
+[
+    { "key": "alt+left",  "command": "workbench.action.navigateBack" },
+    { "key": "alt+right", "command": "workbench.action.navigateForward" },
+
+    { "key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup" },
+    { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup" },
+
+    { "key": "ctrl+shift+g", "command": "git.checkout" },
+    { "key": "ctrl+shift+s", "command": "workbench.view.scm", "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'" },
+    { "key": "ctrl+shift+p", "command": "gitlens.openFileHistory" },
+
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
+    },
+    {
+        "key": "ctrl+shift+g g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
+    },
+    {
+        "key": "f5",
+        "command": "sqltools.executeCurrentQuery",
+        "when": "editorLangId == 'sql'"
+    },
+    {
+        "key": "ctrl+shift+alt+l",
+        "command": "-workbench.action.quickchat.toggle",
+        "when": "chatIsEnabled"
+    },
+
+    {
+        "key": "shift+f12",
+        "command": "references-view.findReferences",
+        "when": "editorHasReferenceProvider"
+    },
+    {
+        // conflicts with layout toggle
+        "key": "shift+alt+f12",
+        "command": "-references-view.findReferences",
+        "when": "editorHasReferenceProvider"
+    },
+    {
+        "key": "ctrl+k ctrl+l",
+        "command": "editor.action.showDefinitionPreviewHover"
+    },
+]

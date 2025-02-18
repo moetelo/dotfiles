@@ -1,0 +1,90 @@
+{
+  "twiggy.diagnostics.twigCsFixer": true,
+  "telemetry.telemetryLevel": "off",
+  "bun.runtime": "/home/mikhail/.bun/bin/bun",
+  // "editor.fontFamily": "LiterationMono Nerd Font",
+
+  "terminal.integrated.fontFamily": "SetoFontFixed",
+  "terminal.integrated.fontSize": 16,
+
+  "typescript.preferences.quoteStyle": "single",
+
+  "rainbow_csv.enable_context_menu_head": true,
+
+  "github.copilot.advanced": {
+    "useLanguageServer": true
+  },
+  "github.copilot.editor.enableCodeActions": false,
+  "debug.toolBarLocation": "docked",
+  "debug.openDebug": "neverOpen",
+  "editor.bracketPairColorization.enabled": false,
+  "workbench.tree.indent": 20,
+  "http.proxy": "http://127.0.0.1:10708",
+  "files.trimTrailingWhitespace": true,
+  "editor.renderFinalNewline": "dimmed",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  "dotnet.codeLens.enableReferencesCodeLens": false,
+
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorBlinking": true,
+
+  "editor.selectionClipboard": false,
+  "gitlens.codeLens.enabled": false,
+  "files.associations": {
+    "config": "shellscript",
+    "*.json": "jsonc",
+    "*.timer": "ini",
+    "*.tmpl": "gogo",
+    "*.pgsql": "sql",
+    ".env.test": "properties"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "extensions.ignoreRecommendations": true,
+  "editor.stickyScroll.enabled": false,
+  "editor.minimap.enabled": false,
+  "window.customTitleBarVisibility": "auto",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "window.menuBarVisibility": "toggle",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "lldb.suppressUpdateNotifications": true,
+  "debug.onTaskErrors": "debugAnyway",
+  "[yaml]": {
+    "diffEditor.ignoreTrimWhitespace": true
+  },
+  "xml.symbols.maxItemsComputed": 10000,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.largeFileOptimizations": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.renderSideBySide": true,
+  "vue.server.hybridMode": false,
+  "githubPullRequests.pullBranch": "never",
+  "zig.zls.enabled": "on",
+  "zig.path": "zig",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
+}

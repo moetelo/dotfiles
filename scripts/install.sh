@@ -6,6 +6,9 @@ sudo usermod -aG video ${USER}
 
 git clone --bare git@github.com:moetelo/dotfiles.git $HOME/dotfiles/
 
+sudo ln -s ~/.config/00-keyboard.conf /etc/X11/xorg.conf.d/
+sudo cp ~/.config/fonts/SetoFontFixed.ttf /usr/share/fonts/TTF
+
 sudo pacman -S --needed --noconfirm git base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 pushd yay-bin > /dev/null
@@ -18,10 +21,10 @@ yay_packages=(
     picom iwd dunst solaar unclutter greenclip xray
     xlayoutdisplay numlockx xkb-switch
     nvidia
-    curl ripgrep jq htop
+    curl wget ripgrep jq htop
     visual-studio-code-bin neovim npm
-    feh zathura zathura-pdf-mupdf yazi
-    firefox spotify mpv chromium telegram-desktop rofi discord
+    feh zathura zathura-pdf-mupdf thunar
+    firefox mpv chromium telegram-desktop rofi discord
 )
 yay -S --needed --noconfirm $yay_packages
 
@@ -32,7 +35,7 @@ fi
 if [[ ! -f "$HOME/.fehbg" ]]; then
     mkdir -p $HOME/Pictures/
     wget 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Левитан_У_омута.jpg' -O "$HOME/Pictures/Levitan_u_omuta.jpg"
-    feh --no-fehbg --bg-scale "$HOME/Pictures/Levitan_u_omuta.jpg"
+    feh --bg-scale "$HOME/Pictures/Levitan_u_omuta.jpg"
 fi
 
 GRUB_FILE='/etc/default/grub'

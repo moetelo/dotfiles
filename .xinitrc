@@ -46,6 +46,8 @@ xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
 numlockx on &
 picom --daemon &
 
+thunar --daemon &
+
 greenclip daemon &
 dunst &
 unclutter &

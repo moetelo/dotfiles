@@ -60,7 +60,7 @@ static double maxlatency = 33;
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
-static unsigned int blinktimeout = 800;
+static unsigned int blinktimeout = 500;
 
 /*
  * thickness of underline and bar cursors
@@ -172,17 +172,28 @@ static unsigned int defaultattr = 11;
  */
 static uint forcemousemod = ShiftMask;
 
+#define SCROLL_LINES 2
+
 /*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+
+	// paste on middle mouse button
+	// { XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+
+	// { ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+	// { ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+
+	// scroll in pagers (less)
+	{ ShiftMask,           Button4, ttysend,        {.s = "\031"} },
+	{ ShiftMask,           Button5, ttysend,        {.s = "\005"} },
+
+	// scroll in terminal
+	{ XK_ANY_MOD,            Button4,        kscrollup,      {.i = SCROLL_LINES} },
+	{ XK_ANY_MOD,            Button5,        kscrolldown,    {.i = SCROLL_LINES} },
 };
 
 /* Internal keyboard shortcuts. */

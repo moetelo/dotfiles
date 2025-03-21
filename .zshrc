@@ -13,13 +13,13 @@ clear-screen-and-scrollback() {
     zle clear-screen
 }
 
-zle -N clear-screen-and-scrollback
-bindkey '^L' clear-screen-and-scrollback
-bindkey '^H' backward-kill-word
-
 ZSH_THEME=telo
 plugins=(sudo git)
 source ~/.oh-my-zsh/oh-my-zsh.sh
+
+zle -N clear-screen-and-scrollback
+bindkey '^L' clear-screen-and-scrollback
+bindkey '^H' backward-kill-word
 
 export EDITOR='nvim'
 zstyle ':completion::complete:*' gain-privileges 1
@@ -57,5 +57,9 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/mikhail/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
-. "/home/mikhail/.cargo/bin/env"
+# . "/home/mikhail/.cargo/bin/env"
+
+
+# bun completions
+[ -s "/home/mikhail/.bun/_bun" ] && source "/home/mikhail/.bun/_bun"
 

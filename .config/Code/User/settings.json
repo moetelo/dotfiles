@@ -1,8 +1,10 @@
 {
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
+  "window.titleBarStyle": "native",
+
   "bun.runtime": "/home/mikhail/.bun/bin/bun",
-  // "editor.fontFamily": "LiterationMono Nerd Font",
+  // "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
 
   "terminal.integrated.fontFamily": "SetoFontFixed",
   "terminal.integrated.fontSize": 16,
@@ -19,7 +21,7 @@
   "debug.openDebug": "neverOpen",
   "editor.bracketPairColorization.enabled": false,
   "workbench.tree.indent": 20,
-  "http.proxy": "http://127.0.0.1:10708",
+  "http.proxy": "http://127.0.0.1:10801",
   "files.trimTrailingWhitespace": true,
   "editor.renderFinalNewline": "dimmed",
   "files.insertFinalNewline": true,
@@ -45,7 +47,7 @@
     "*.pgsql": "sql",
     ".env.test": "properties"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": false,
   "editor.minimap.enabled": false,
@@ -74,7 +76,7 @@
   },
   "editor.inlineSuggest.suppressSuggestions": true,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "diffEditor.renderSideBySide": true,
   "vue.server.hybridMode": false,

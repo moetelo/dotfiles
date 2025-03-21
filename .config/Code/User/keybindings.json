@@ -45,4 +45,9 @@
         "key": "ctrl+k ctrl+l",
         "command": "editor.action.showDefinitionPreviewHover"
     },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused"
+    },
 ]

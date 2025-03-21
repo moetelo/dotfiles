@@ -188,8 +188,8 @@ static MouseShortcut mshortcuts[] = {
 	// { ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
 
 	// scroll in pagers (less)
-	{ ShiftMask,           Button4, ttysend,        {.s = "\031"} },
-	{ ShiftMask,           Button5, ttysend,        {.s = "\005"} },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"}, 1, 1 },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"}, 1, 1 },
 
 	// scroll in terminal
 	{ XK_ANY_MOD,            Button4,        kscrollup,      {.i = SCROLL_LINES} },

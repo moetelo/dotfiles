@@ -1,0 +1,40 @@
+#!/usr/bin/awk -f
+
+# Reset buffer on blank lines
+/^[[:space:]]*$/ {
+    n = 0
+    next
+}
+
+BEGINFILE {
+    n = 0
+}
+
+ENDFILE {
+    if (fileBlockCount > 0) print ""
+    fileBlockCount = 0
+
+    n = 0
+}
+
+# Add the line to the buffer.
+{
+    block[++n] = $0
+}
+
+/^h: [0-9]+/ {
+    split(FILENAME, filenameParts, "/")
+    print "\033[1;33m" filenameParts[length(filenameParts)] "\033[0m\n"
+    fileBlockCount++
+
+    hours += $2
+
+    for (i = 1; i <= n; i++) print block[i]
+
+    n = 0
+    next
+}
+
+END {
+    print "\033[1;32mTotal: " hours " hours"
+}

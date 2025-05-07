@@ -48,7 +48,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 #include "fibonacci.c"
 static const Layout layouts[] = {
 	{ "[]=", tile },
-	{ "[@]", spiral },
+	// { "[@]", spiral },
 };
 
 /* key definitions */
@@ -80,21 +80,19 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,       zoom,           {0} },
 	{ MODKEY,                       XK_backslash, zoom,           {0} },
 
-	// bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 	// # bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:$HOME/scripts/rofi-power-menu
-	// bindsym $mod+Shift+e exec shutdown now
 
 	{ MODKEY,             			XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
+	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	// { MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
+	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+
 	{ MODKEY,                       XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 
@@ -103,22 +101,25 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
-	{ 0,							XF86XK_AudioPlay, spawn,      SHCMD("playerctl play-pause") },
-	{ 0,							XF86XK_AudioPause, spawn,      SHCMD("playerctl play-pause") },
-	{ 0,							XF86XK_AudioNext, spawn,      SHCMD("playerctl next") },
-	{ 0,							XF86XK_AudioPrev, spawn,      SHCMD("playerctl previous") },
+	{ 0,							XF86XK_KbdBrightnessDown, spawn, SHCMD("asusctl --next-kbd-bright") },
+	{ 0,							XF86XK_KbdBrightnessUp,   spawn, SHCMD("asusctl aura --next-mode") },
+
+	{ 0,							XF86XK_AudioPlay,  spawn,     SHCMD("playerctl play-pause") },
+	{ 0,							XF86XK_AudioPause, spawn,     SHCMD("playerctl play-pause") },
+	{ 0,							XF86XK_AudioNext,  spawn,     SHCMD("playerctl next") },
+	{ 0,							XF86XK_AudioPrev,  spawn,     SHCMD("playerctl previous") },
 
 	{ 0, 							XF86XK_AudioRaiseVolume, spawn,  SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
 	{ 0, 							XF86XK_AudioLowerVolume, spawn,  SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
 	{ 0, 							XF86XK_AudioMute, spawn, 		 SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
 	{ 0, 							XF86XK_AudioMicMute, spawn, 	 SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 
-	{ 0, 							XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-") },
-	{ 0, 							XF86XK_MonBrightnessUp, spawn, 	 SHCMD("brightnessctl set 10%+") },
+	{ 0, 							XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 1%-") },
+	{ 0, 							XF86XK_MonBrightnessUp, spawn, 	 SHCMD("brightnessctl set 1%+") },
 	{ MODKEY,                       XK_F7, spawn,     				 SHCMD("brightnessctl set 10%-") },
 	{ MODKEY,                       XK_F8, spawn,     				 SHCMD("brightnessctl set 10%+") },
-	{ MODKEY,                       XK_F11, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 5 - 10") },
-	{ MODKEY,                       XK_F12, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 5 + 10") },
+	{ MODKEY,                       XK_F11, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 14 - 10") },
+	{ MODKEY,                       XK_F12, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 14 + 10") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

@@ -28,9 +28,7 @@ yay_packages=(
 )
 yay -S --needed --noconfirm $yay_packages
 
-if ! which yarn > /dev/null; then
-    sudo npm i -g yarn
-fi
+xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 if [[ ! -f "$HOME/.fehbg" ]]; then
     mkdir -p $HOME/Pictures/

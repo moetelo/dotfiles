@@ -3,7 +3,7 @@ local is_proxy_set = vim.env.https_proxy ~= nil or vim.env.http_proxy ~= nil
 return {
     { 'rcarriga/nvim-notify', enabled = false },
     { 'folke/todo-comments.nvim', enabled = false },
-    { 'copilot-cmp', enabled = is_proxy_set },
+    -- { 'copilot-cmp', enabled = is_proxy_set },
 
     {
         'folke/noice.nvim',

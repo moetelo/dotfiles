@@ -1,4 +1,5 @@
 {
+  "vim.disableExtension": true,
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
   "window.titleBarStyle": "native",
@@ -13,10 +14,11 @@
 
   "rainbow_csv.enable_context_menu_head": true,
 
-  "github.copilot.advanced": {
-    "useLanguageServer": true
-  },
+  // "github.copilot.advanced": {
+  //   "useLanguageServer": true
+  // },
   "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.chat.search.semanticTextResults": false,
   "debug.toolBarLocation": "docked",
   "debug.openDebug": "neverOpen",
   "editor.bracketPairColorization.enabled": false,

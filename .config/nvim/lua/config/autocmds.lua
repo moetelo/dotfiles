@@ -8,6 +8,8 @@ vim.opt.relativenumber = false
 vim.opt.mouse = ''
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
+vim.api.nvim_set_option("clipboard", "unnamedplus")
+
 -- http://www.lazyvim.org/configuration/tips
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     -- pattern = { 'lua' },

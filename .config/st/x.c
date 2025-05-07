@@ -457,23 +457,15 @@ buttonmask(uint button)
 int
 mouseaction(XEvent *e, uint release)
 {
+	int btn = e->xbutton.button;
 	MouseShortcut *ms;
 
 	/* ignore Button<N>mask for Button<N> - it's set on release */
-	uint state = e->xbutton.state & ~buttonmask(e->xbutton.button);
-
-	if (release == 0 &&
-	    e->xbutton.button == Button1 &&
-	    (match(ControlMask, state) ||
-	     match(ControlMask, state & ~forcemousemod))) {
-		followurl(evrow(e), evcol(e));
-		return 1;
-	}
-
+	uint state = e->xbutton.state & ~buttonmask(btn);
 
 	for (ms = mshortcuts; ms < mshortcuts + LEN(mshortcuts); ms++) {
 		if (ms->release == release &&
-		    ms->button == e->xbutton.button &&
+		    ms->button == btn &&
 			(!ms->altscrn || (ms->altscrn == (tisaltscr() ? 1 : -1))) &&
 		    (match(ms->mod, state) ||  /* exact or forced */
 		     match(ms->mod, state & ~forcemousemod))) {
@@ -718,6 +710,7 @@ void
 brelease(XEvent *e)
 {
 	int btn = e->xbutton.button;
+	uint state = e->xbutton.state;
 
 	if (1 <= btn && btn <= 11)
 		buttons &= ~(1 << (btn-1));
@@ -729,8 +722,15 @@ brelease(XEvent *e)
 
 	if (mouseaction(e, 1))
 		return;
-	if (btn == Button1)
+
+	if (btn == Button1) {
 		mousesel(e, 1);
+
+		if (state & ControlMask) {
+			followurl(evrow(e), evcol(e));
+			return 1;
+		}
+	}
 }
 
 void

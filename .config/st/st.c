@@ -666,79 +666,83 @@ strstrany(char* s, char** strs) {
 void
 highlighturls(void)
 {
-	// char *match;
-	// char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
-	// for (int i = term.top; i < term.bot; i++) {
-	// 	int url_start = -1;
-	// 	for (int j = 0; j < term.col; j++) {
-	// 		if (term.line[i][j].u < 127) {
-	// 			linestr[j] = term.line[i][j].u;
-	// 		}
-	// 		linestr[term.col] = '\0';
-	// 	}
-	// 	while ((match = strstrany(linestr + url_start + 1, urlprefixes))) {
-	// 		url_start = match - linestr;
-	// 		for (int c = url_start; c < term.col && strchr(urlchars, linestr[c]); c++) {
-	// 			term.line[i][c].mode |= ATTR_URL;
-	// 			tsetdirt(i, c);
-	// 		}
-	// 	}
-	// }
-	// free(linestr);
+	char *match;
+	char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
+	for (int i = term.top; i < term.bot; i++) {
+		int url_start = -1;
+		for (int j = 0; j < term.col; j++) {
+			if (TLINE(i)[j].u < 127) {
+				linestr[j] = TLINE(i)[j].u;
+			}
+			linestr[term.col] = '\0';
+		}
+		while ((match = strstrany(linestr + url_start + 1, urlprefixes))) {
+			url_start = match - linestr;
+			for (int c = url_start; c < term.col && strchr(urlchars, linestr[c]); c++) {
+				TLINE(i)[c].mode |= ATTR_URL;
+				tsetdirt(i, c);
+			}
+		}
+	}
+	free(linestr);
 }
 
 void
 unhighlighturls(void)
 {
-	// for (int i = term.top; i < term.bot; i++) {
-	// 	for (int j = 0; j < term.col; j++) {
-	// 		Glyph* g = &term.line[i][j];
-	// 		if (g->mode & ATTR_URL) {
-	// 			g->mode &= ~ATTR_URL;
-	// 			tsetdirt(i, j);
-	// 		}
-	// 	}
-	// }
-	// return;
+	for (int i = term.top; i < term.bot; i++) {
+		for (int j = 0; j < term.col; j++) {
+			Glyph* g = &TLINE(i)[j];
+			if (g->mode & ATTR_URL) {
+				g->mode &= ~ATTR_URL;
+				tsetdirt(i, j);
+			}
+		}
+	}
 }
 
 void
 followurl(int x, int y) {
-	// char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
-	// char *match;
-	// for (int i = 0; i < term.col; i++) {
-	// 	if (term.line[x][i].u < 127) {
-	// 		linestr[i] = term.line[x][i].u;
-	// 	}
-	// 	linestr[term.col] = '\0';
-	// }
-	// int url_start = -1;
-	// while ((match = strstrany(linestr + url_start + 1, urlprefixes))) {
-	// 	url_start = match - linestr;
-	// 	int url_end = url_start;
-	// 	for (int c = url_start; c < term.col && strchr(urlchars, linestr[c]); c++) {
-	// 		url_end++;
-	// 	}
-	// 	if (url_start <= y && y < url_end) {
-	// 		linestr[url_end] = '\0';
-	// 		break;
-	// 	}
-	// }
-	// if (url_start == -1) {
-	// 	free(linestr);
-	// 	return;
-	// }
+	char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
+	char *match;
+	for (int i = 0; i < term.col; i++) {
+		if (TLINE(x)[i].u < 127) {
+			linestr[i] = TLINE(x)[i].u;
+		} else {
+			linestr[i] = ' ';
+			continue;
+		}
+		linestr[term.col] = '\0';
+	}
+	fprintf(stderr, "Line: %s\n", linestr);
 
-	// pid_t chpid;
-	// if ((chpid = fork()) == 0) {
-	// 	if (fork() == 0)
-	// 		execlp(urlhandler, urlhandler, linestr + url_start, NULL);
-	// 	exit(1);
-	// }
-	// if (chpid > 0)
-	// 	waitpid(chpid, NULL, 0);
-	// free(linestr);
-	// unhighlighturls();
+	int url_start = -1;
+	while ((match = strstrany(linestr + url_start + 1, urlprefixes))) {
+		url_start = match - linestr;
+		int url_end = url_start;
+		for (int c = url_start; c < term.col && strchr(urlchars, linestr[c]); c++) {
+			url_end++;
+		}
+		if (url_start <= y && y < url_end) {
+			linestr[url_end] = '\0';
+			break;
+		}
+	}
+	if (url_start == -1) {
+		free(linestr);
+		return;
+	}
+
+	pid_t chpid;
+	if ((chpid = fork()) == 0) {
+		if (fork() == 0)
+			execlp(urlhandler, urlhandler, linestr + url_start, NULL);
+		exit(1);
+	}
+	if (chpid > 0)
+		waitpid(chpid, NULL, 0);
+	free(linestr);
+	unhighlighturls();
 }
 
 void

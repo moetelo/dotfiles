@@ -79,7 +79,9 @@ typedef union {
 	const char *s;
 } Arg;
 
-void die(const char *, ...);
+// extern: c3
+// void die(const char *, ...);
+extern void die(const char *, ...);
 void redraw(void);
 void draw(void);
 

@@ -724,11 +724,12 @@ brelease(XEvent *e)
 		return;
 
 	if (btn == Button1) {
+		die("Button1 released! Args: %s\n%s", "hello from C", "asasdasdasd");
 		mousesel(e, 1);
 
 		if (state & ControlMask) {
 			followurl(evrow(e), evcol(e));
-			return 1;
+			return;
 		}
 	}
 }

@@ -1,22 +1,30 @@
 # st - simple terminal
 # See LICENSE file for copyright and license details.
+.SUFFIXES: .c .o .c3
+
 .POSIX:
 
 include config.mk
 
 SRC = st.c x.c
+C3SRC = die.c3
 OBJ = $(SRC:.c=.o)
+OBJ += $(C3SRC:.c3=.o)
 
 all: st
 
 config.h:
 	cp config.def.h config.h
 
+.c3.o:
+	/usr/bin/c3c compile-only -Oz  --emit-stdlib=no --single-module=yes -o $@ $<
+
 .c.o:
 	$(CC) $(STCFLAGS) -c $<
 
 st.o: config.h st.h win.h
 x.o: arg.h config.h st.h win.h
+die.o: die.c3
 
 $(OBJ): config.h config.mk
 

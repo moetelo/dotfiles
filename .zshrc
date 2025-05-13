@@ -63,3 +63,6 @@ fi
 # bun completions
 [ -s "/home/mikhail/.bun/_bun" ] && source "/home/mikhail/.bun/_bun"
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/mcli mcli

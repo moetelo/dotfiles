@@ -7,10 +7,14 @@
   "bun.runtime": "/home/mikhail/.bun/bin/bun",
   // "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
 
-  "terminal.integrated.fontFamily": "SetoFontFixed",
-  "terminal.integrated.fontSize": 16,
+  // "terminal.integrated.fontFamily": "SetoFontFixed",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorBlinking": true,
 
-  "typescript.preferences.quoteStyle": "single",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.gpuAcceleration": "off",
+  "terminal.integrated.showExitAlert": false,
 
   "rainbow_csv.enable_context_menu_head": true,
 
@@ -36,9 +40,6 @@
   "rust-analyzer.inlayHints.chainingHints.enable": false,
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
 
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.cursorBlinking": true,
-
   "editor.selectionClipboard": false,
   "gitlens.codeLens.enabled": false,
   "files.associations": {
@@ -57,7 +58,6 @@
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "window.menuBarVisibility": "toggle",
-  "terminal.integrated.enableMultiLinePasteWarning": "never",
   "security.workspace.trust.untrustedFiles": "open",
   "lldb.suppressUpdateNotifications": true,
   "debug.onTaskErrors": "debugAnyway",
@@ -69,7 +69,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.largeFileOptimizations": false,
+  // "editor.largeFileOptimizations": false,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -77,9 +77,13 @@
     "editor.defaultFormatter": "Vue.volar"
   },
   "editor.inlineSuggest.suppressSuggestions": true,
+  "typescript.preferences.quoteStyle": "single",
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "vscode.typescript-language-features",
   },
+
+  "php.inlayHints.parameters.enabled": false,
+
   "diffEditor.renderSideBySide": true,
   "vue.server.hybridMode": false,
   "githubPullRequests.pullBranch": "never",
@@ -90,5 +94,6 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  },
+  "php.problems.exclude": {}
 }

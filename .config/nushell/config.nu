@@ -13,7 +13,15 @@ source ~/.cache/carapace/init.nu
 
 source ~/scripts/think.nu
 
-alias dot = /usr/bin/git --git-dir $'($env.HOME)/dotfiles' --work-tree ($env.HOME)
+def dot-env [...command: any] {
+  with-env {
+    GIT_DIR: $'($env.HOME)/dotfiles',
+    GIT_WORK_TREE: $env.HOME,
+  } {
+    run-external ...$command
+  }
+}
+
 alias gfa = git fetch --all --prune
 
 let BUN_INSTALL = $"($env.HOME)/.bun"

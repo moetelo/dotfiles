@@ -47,6 +47,7 @@ def think-move-unchecked [] {
 
 def think [isoDateMd?: string@daily-thoughts-basename] {
     if ($isoDateMd | is-empty) {
+        think-move-unchecked
         edit (thought-by-date (date now))
         return
     }

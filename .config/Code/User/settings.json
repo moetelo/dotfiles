@@ -48,7 +48,8 @@
     "*.timer": "ini",
     "*.tmpl": "gogo",
     "*.pgsql": "sql",
-    ".env.test": "properties"
+    ".env.test": "properties",
+    "config-hypr": "jsonc"
   },
   "diffEditor.ignoreTrimWhitespace": true,
   "extensions.ignoreRecommendations": true,

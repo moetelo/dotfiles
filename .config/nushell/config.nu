@@ -2,6 +2,7 @@
 
 # help config nu
 
+$env.EDITOR = 'nvim'
 $env.config.buffer_editor = 'nvim'
 $env.config.table.mode = 'compact'
 $env.config.table.header_on_separator = true

@@ -1,5 +1,6 @@
 {
-  "vim.disableExtension": true,
+  "haskell.plugin.explicit-fields.inlayHintsOn": false,
+
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
   "window.titleBarStyle": "native",
@@ -49,7 +50,8 @@
     "*.tmpl": "gogo",
     "*.pgsql": "sql",
     ".env.test": "properties",
-    "config-hypr": "jsonc"
+    "config-hypr": "jsonc",
+    "*.caddy": "caddyfile"
   },
   "diffEditor.ignoreTrimWhitespace": true,
   "extensions.ignoreRecommendations": true,
@@ -96,5 +98,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "php.problems.exclude": {}
+  "php.problems.exclude": {},
+  "haskell.manageHLS": "GHCup"
 }

@@ -34,14 +34,8 @@ setup_screen() {
     $HOME/.fehbg
 }
 
-/usr/bin/pipewire &
-/usr/bin/pipewire-pulse &
-/usr/bin/wireplumber &
-
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
-
-xinput set-prop "Logitech USB Receiver" "libinput Accel Speed" -1
 
 numlockx on &
 picom --daemon &

@@ -966,6 +966,10 @@ focus_monitor(const Monitor *m)
 	XWarpPointer(dpy, None, m->barwin, 0, 0, 0, 0, m->mw / 2, m->mh / 2);
 	selmon = m;
 	focus(NULL);
+
+    if (selmon->sel) {
+        XWarpPointer(dpy, None, selmon->sel->win, 0, 0, 0, 0, selmon->sel->w/2, selmon->sel->h/2);
+    }
 }
 
 void

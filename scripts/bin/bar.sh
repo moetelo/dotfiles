@@ -4,13 +4,13 @@ render() {
     volume=$(pactl get-sink-volume $(pactl get-default-sink) | awk 'NR==1{print $5}')
     layout=$(xkblayout-state print "%s")
     now=$(date +"%F %R")
+    bat=$(cat /sys/class/power_supply/BAT0/capacity)
 
-    xsetroot -name "vol: $volume | $layout | $now"
+    xsetroot -name "bat: $bat | vol: $volume | $layout | $now"
 }
 
 xkb-switch -W \
     | while read -r UNUSED_LINE; do render; done &
-
 
 pactl subscribe \
     | grep --line-buffered "sink" \
@@ -18,5 +18,5 @@ pactl subscribe \
 
 while true; do
     render
-    sleep 2
+    sleep 5
 done

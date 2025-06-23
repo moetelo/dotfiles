@@ -84,6 +84,8 @@ return {
 
     {
         'neovim/nvim-lspconfig',
+        -- https://github.com/LazyVim/LazyVim/issues/6039
+        version = '^1.0.0',
         ---@class PluginLspOpts
         opts = {
             inlay_hints = { enabled = false },
@@ -105,9 +107,6 @@ return {
                 html = {},
                 cssls = {},
             },
-            -- setup = function()
-            --     require('lspconfig').volar.setup({})
-            -- end,
         },
     },
 
@@ -149,6 +148,8 @@ return {
 
     {
         'williamboman/mason.nvim',
+        -- https://github.com/LazyVim/LazyVim/issues/6039
+        version = '^1.0.0',
         opts = {
             ensure_installed = {
                 'stylua',

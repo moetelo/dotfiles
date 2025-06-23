@@ -34,7 +34,8 @@ export PNPM_HOME="$HOME/.local/share/pnpm/"
 export CARGO_HOME="$HOME/.cargo/bin/"
 export BUN_INSTALL="$HOME/.bun"
 export GO_BIN="$HOME/go/bin/"
-path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $path)
+export GHC_BIN="$HOME/.ghcup/ghc/9.6.7/bin"
+path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $GHC_BIN $path)
 export PATH
 
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"

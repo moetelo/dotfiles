@@ -2,6 +2,7 @@
 
 # help config nu
 
+$env.LANG = 'en_US.UTF-8'
 $env.EDITOR = 'nvim'
 $env.config.buffer_editor = 'nvim'
 $env.config.table.mode = 'compact'
@@ -14,7 +15,7 @@ source ~/.cache/carapace/init.nu
 
 source ~/scripts/think.nu
 
-def dot-env [...command: any] {
+def dot-env --wrapped [...command] {
   with-env {
     GIT_DIR: $'($env.HOME)/dotfiles',
     GIT_WORK_TREE: $env.HOME,
@@ -23,12 +24,14 @@ def dot-env [...command: any] {
   }
 }
 
+alias cal = cal --week-start mo
 alias gfa = git fetch --all --prune
 
 let BUN_INSTALL = $"($env.HOME)/.bun"
 
 $env.path ++= [
   '/opt/android-sdk/',
+  $"($env.HOME)/.local/bin/",
   $"($env.HOME)/.local/share/pnpm/",
   $"($env.HOME)/.cargo/bin/",
   $"($BUN_INSTALL)/bin",

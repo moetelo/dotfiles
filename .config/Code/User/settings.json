@@ -1,14 +1,18 @@
 {
+
+  "mdb.showMongoDBPlaygrounds": false,
+  "mdb.showMongoDBConnectionExplorer": true,
+  "mdb.sendTelemetry": false,
+  "mdb.useDefaultTemplateForPlayground": false,
+
+  "yaml.schemaStore.enable": false,
+  "mdb.confirmRunAll": false,
   "haskell.plugin.explicit-fields.inlayHintsOn": false,
 
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
   "window.titleBarStyle": "native",
 
-  "bun.runtime": "/home/mikhail/.bun/bin/bun",
-  // "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
-
-  // "terminal.integrated.fontFamily": "SetoFontFixed",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorBlinking": true,
@@ -19,15 +23,10 @@
 
   "rainbow_csv.enable_context_menu_head": true,
 
-  // "github.copilot.advanced": {
-  //   "useLanguageServer": true
-  // },
   "github.copilot.editor.enableCodeActions": false,
-  "github.copilot.chat.search.semanticTextResults": false,
   "debug.toolBarLocation": "docked",
   "debug.openDebug": "neverOpen",
   "editor.bracketPairColorization.enabled": false,
-  "workbench.tree.indent": 20,
   "http.proxy": "http://127.0.0.1:10801",
   "files.trimTrailingWhitespace": true,
   "editor.renderFinalNewline": "dimmed",
@@ -57,22 +56,16 @@
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": false,
   "editor.minimap.enabled": false,
-  "window.customTitleBarVisibility": "auto",
-  "window.commandCenter": false,
-  "workbench.layoutControl.enabled": false,
   "window.menuBarVisibility": "toggle",
   "security.workspace.trust.untrustedFiles": "open",
-  "lldb.suppressUpdateNotifications": true,
   "debug.onTaskErrors": "debugAnyway",
   "[yaml]": {
     "diffEditor.ignoreTrimWhitespace": true
   },
-  "xml.symbols.maxItemsComputed": 10000,
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  // "editor.largeFileOptimizations": false,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -88,8 +81,6 @@
   "php.inlayHints.parameters.enabled": false,
 
   "diffEditor.renderSideBySide": true,
-  "vue.server.hybridMode": false,
-  "githubPullRequests.pullBranch": "never",
   "zig.zls.enabled": "on",
   "zig.path": "zig",
   "[typescriptreact]": {
@@ -98,6 +89,18 @@
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "php.problems.exclude": {},
-  "haskell.manageHLS": "GHCup"
+  "haskell.manageHLS": "GHCup",
+
+  "window.customTitleBarVisibility": "never",
+  "window.commandCenter": false,
+  "chat.commandCenter.enabled": false,
+
+  "workbench.tree.indent": 20,
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
+  "workbench.activityBar.location": "bottom",
+  "workbench.sideBar.location": "right",
+
+  "files.autoSave": "onFocusChange",
+  "dart.flutterSdkPath": "/home/mikhail/.flutter/flutter",
 }

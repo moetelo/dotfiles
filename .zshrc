@@ -35,7 +35,11 @@ export CARGO_HOME="$HOME/.cargo/bin/"
 export BUN_INSTALL="$HOME/.bun"
 export GO_BIN="$HOME/go/bin/"
 export GHC_BIN="$HOME/.ghcup/ghc/9.6.7/bin"
-path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $GHC_BIN $path)
+export FLUTTER_BIN="$HOME/.flutter/flutter/bin"
+path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $GHC_BIN
+/opt/android-sdk/platform-tools/
+/opt/android-sdk/cmdline-tools/latest/bin/
+$FLUTTER_BIN  $path)
 export PATH
 
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
@@ -59,6 +63,8 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 # . "/home/mikhail/.cargo/bin/env"
+
+source <(fzf --zsh)
 
 
 # bun completions

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+REMOTE=$(git remote get-url origin)
+ORG=$(echo "$REMOTE" | awk -F/ '{print $(NF-2)}')
+PROJECT=$(echo "$REMOTE" | awk -F/ '{print $(NF-1)}')
+REPO=$(echo "$REMOTE" | awk -F/ '{print $NF}')
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+TARGET_BRANCH=master
+
+if [ "$BRANCH" = "$TARGET_BRANCH" ]; then
+  exit 0
+fi
+
+echo "  https://dev.azure.com/$ORG/$PROJECT/_git/$REPO/pullrequestcreate?sourceRef=$BRANCH&targetRef=$TARGET_BRANCH"

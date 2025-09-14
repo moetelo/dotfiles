@@ -1,0 +1,12 @@
+[init]
+    defaultBranch = master
+[user]
+    name = Mikhail Gunin
+    email = gunka462@gmail.com
+[submodule]
+    recurse = true
+[push]
+    autoSetupRemote = true
+[pull]
+    rebase = true
+    ff = true

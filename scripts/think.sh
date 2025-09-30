@@ -12,9 +12,9 @@ think() {
         return
     fi
 
-    # `think yesterday` support
-    if [[ "$1" =~ "^[a-zA-Z ]+$" ]]; then
-        fname=$(date --iso-8601 --date="$1")
+    # relative date support: `think -1` -> think 1 day ago
+    if [[ "$1" =~ "^[-0-9]+$" ]]; then
+        fname=$(date --iso-8601 --date="$1 day")
         $EDITOR $HOME/thoughts/$fname.md
         return
     fi

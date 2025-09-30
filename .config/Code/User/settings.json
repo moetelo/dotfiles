@@ -1,5 +1,4 @@
 {
-
   "mdb.showMongoDBPlaygrounds": false,
   "mdb.showMongoDBConnectionExplorer": true,
   "mdb.sendTelemetry": false,
@@ -12,6 +11,8 @@
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
   "window.titleBarStyle": "native",
+
+  // "editor.fontFamily": "Menlo",
 
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "line",
@@ -52,11 +53,12 @@
     "config-hypr": "jsonc",
     "*.caddy": "caddyfile"
   },
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": false,
+  "terminal.integrated.stickyScroll.enabled": false,
   "editor.minimap.enabled": false,
-  "window.menuBarVisibility": "toggle",
+  "window.menuBarVisibility": "hidden",
   "security.workspace.trust.untrustedFiles": "open",
   "debug.onTaskErrors": "debugAnyway",
   "[yaml]": {
@@ -90,17 +92,20 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "haskell.manageHLS": "GHCup",
-
-  "window.customTitleBarVisibility": "never",
   "window.commandCenter": false,
   "chat.commandCenter.enabled": false,
 
   "workbench.tree.indent": 20,
   "workbench.layoutControl.enabled": false,
   "workbench.editor.enablePreviewFromCodeNavigation": true,
-  "workbench.activityBar.location": "bottom",
-  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "hidden",
+  "window.customTitleBarVisibility": "never",
+  "workbench.activityBar.orientation": "vertical",
 
   "files.autoSave": "onFocusChange",
   "dart.flutterSdkPath": "/home/mikhail/.flutter/flutter",
+  "mdb.mcp.server": "enabled",
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "workbench.colorTheme": "Default Dark Modern",
+  "typescript.updateImportsOnFileMove.enabled": "always",
 }

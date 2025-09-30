@@ -6,7 +6,7 @@
     { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup" },
 
     { "key": "ctrl+shift+g", "command": "git.checkout" },
-    { "key": "ctrl+shift+s", "command": "workbench.view.scm", "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'" },
+    { "key": "ctrl+shift+s", "command": "workbench.view.scm", "when": "workbench.scm.active" },
     { "key": "ctrl+shift+p", "command": "gitlens.openFileHistory" },
 
     // conflicts with layout toggle
@@ -87,5 +87,35 @@
         "key": "f4",
         "command": "-goToNextReference",
         "when": "inReferenceSearchEditor || referenceSearchVisible"
-    }
+    },
+
+    { "key": "ctrl+y", "command": "-editor.action.inlineDiffs.acceptPartialEdit", "when": "editorTextFocus && inlineDiffs.activeEditorWithDiffs" },
+    { "key": "ctrl+y", "command": "-aichat.newfollowupaction" },
+    { "key": "ctrl+shift+r", "command": "-editor.action.refactor", "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly" },
+    { "key": "ctrl+shift+s", "command": "-workbench.action.openAgentsView", "when": "!isInBackgroundComposerWindow" },
+    { "key": "ctrl+shift+s", "command": "-workbench.action.files.saveAs" },
+    { "key": "ctrl+shift+l", "command": "-aichat.insertselectionintochat" },
+    { "key": "ctrl+l", "command": "-composer.sendToAgent", "when": "editorHasPromptBar && editorPromptBarFocused" },
+    { "key": "ctrl+l", "command": "-aichat.newchataction" },
+
+    {
+        "key": "ctrl+alt+i",
+        "command": "composer.startComposerPrompt",
+        "when": "cursor.appLayout != 'agent'"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-composer.startComposerPrompt",
+        "when": "cursor.appLayout != 'agent'"
+    },
+    // {
+    //     "key": "tab",
+    //     "command": "-editor.action.inlineSuggest.commit",
+    //     "when": "inInlineEditsPreviewEditor"
+    // },
+    // {
+    //     "key": "tab",
+    //     "command": "editor.action.inlineSuggest.commit",
+    //     "when": "inInlineEditsPreviewEditor"
+    // },
 ]

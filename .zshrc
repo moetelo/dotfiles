@@ -28,6 +28,7 @@ zstyle ':completion:*' list-prompt ''
 source ~/scripts/proxy-utils.sh
 source ~/scripts/fzf-utils.sh
 source ~/scripts/think.sh
+source ~/vpn.sh
 
 export ANDROID_HOME=/opt/android-sdk/
 export PNPM_HOME="$HOME/.local/share/pnpm/"

@@ -53,7 +53,7 @@
     "config-hypr": "jsonc",
     "*.caddy": "caddyfile"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": false,
   "terminal.integrated.stickyScroll.enabled": false,

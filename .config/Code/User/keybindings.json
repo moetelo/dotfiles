@@ -108,14 +108,16 @@
         "command": "-composer.startComposerPrompt",
         "when": "cursor.appLayout != 'agent'"
     },
-    // {
-    //     "key": "tab",
-    //     "command": "-editor.action.inlineSuggest.commit",
-    //     "when": "inInlineEditsPreviewEditor"
-    // },
-    // {
-    //     "key": "tab",
-    //     "command": "editor.action.inlineSuggest.commit",
-    //     "when": "inInlineEditsPreviewEditor"
-    // },
+
+    // prefer built-in tab over Cursor tab
+    {
+        "key": "tab",
+        "command": "editor.action.acceptCursorTabSuggestion",
+        "when": "cpp.shouldAcceptTab && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.acceptCursorTabSuggestion",
+        "when": "cpp.shouldAcceptTab"
+    },
 ]

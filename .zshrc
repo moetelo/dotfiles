@@ -22,7 +22,9 @@ bindkey '^L' clear-screen-and-scrollback
 bindkey '^H' backward-kill-word
 
 export EDITOR='nvim'
+export MANPAGER='nvim +Man! -c "set laststatus=0"'
 zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*:(ssh|scp|sftp|rsync):*' known-hosts-files ''
 zstyle ':completion:*' list-prompt ''
 
 source ~/scripts/proxy-utils.sh
@@ -46,8 +48,9 @@ export PATH
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lha'
 alias grep='grep --color=auto'
+alias c='bat --plain'
 
 sum-num() {
     declare nums=${*:-$(</dev/stdin)}
@@ -67,10 +70,8 @@ fi
 
 source <(fzf --zsh)
 
-
 # bun completions
 [ -s "/home/mikhail/.bun/_bun" ] && source "/home/mikhail/.bun/_bun"
-
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/mcli mcli

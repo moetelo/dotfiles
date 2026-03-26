@@ -1,29 +1,23 @@
 {
+  "breadcrumbs.enabled": false,
   "mdb.showMongoDBPlaygrounds": false,
   "mdb.showMongoDBConnectionExplorer": true,
   "mdb.sendTelemetry": false,
   "mdb.useDefaultTemplateForPlayground": false,
-
   "yaml.schemaStore.enable": false,
   "mdb.confirmRunAll": false,
   "haskell.plugin.explicit-fields.inlayHintsOn": false,
-
   "twiggy.diagnostics.twigCsFixer": true,
   "telemetry.telemetryLevel": "off",
   "window.titleBarStyle": "native",
-
   // "editor.fontFamily": "Menlo",
-
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorBlinking": true,
-
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.showExitAlert": false,
-
   "rainbow_csv.enable_context_menu_head": true,
-
   "github.copilot.editor.enableCodeActions": false,
   "debug.toolBarLocation": "docked",
   "debug.openDebug": "neverOpen",
@@ -33,14 +27,11 @@
   "editor.renderFinalNewline": "dimmed",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-
   "dotnet.codeLens.enableReferencesCodeLens": false,
-
   "rust-analyzer.inlayHints.typeHints.enable": false,
   "rust-analyzer.inlayHints.parameterHints.enable": false,
   "rust-analyzer.inlayHints.chainingHints.enable": false,
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-
   "editor.selectionClipboard": false,
   "gitlens.codeLens.enabled": false,
   "files.associations": {
@@ -75,13 +66,11 @@
     "editor.defaultFormatter": "Vue.volar"
   },
   "editor.inlineSuggest.suppressSuggestions": true,
-  "typescript.preferences.quoteStyle": "single",
+  "js/ts.preferences.quoteStyle": "single",
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
   },
-
   "php.inlayHints.parameters.enabled": false,
-
   "diffEditor.renderSideBySide": true,
   "zig.zls.enabled": "on",
   "zig.path": "zig",
@@ -94,18 +83,33 @@
   "haskell.manageHLS": "GHCup",
   "window.commandCenter": false,
   "chat.commandCenter.enabled": false,
-
   "workbench.tree.indent": 20,
   "workbench.layoutControl.enabled": false,
   "workbench.editor.enablePreviewFromCodeNavigation": true,
   "workbench.activityBar.location": "hidden",
   "window.customTitleBarVisibility": "never",
   "workbench.activityBar.orientation": "vertical",
-
   "files.autoSave": "onFocusChange",
   "dart.flutterSdkPath": "/home/mikhail/.flutter/flutter",
-  "mdb.mcp.server": "enabled",
+  "mdb.mcp.server": "autoStartDisabled",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "workbench.colorTheme": "Default Dark Modern",
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "gitlens.views.fileHistory.mode": "contributors",
+  "workbench.editor.enablePreview": false,
+  "git.blame.editorDecoration.enabled": true,
+  "git.blame.statusBarItem.enabled": false,
+  "git.blame.editorDecoration.template": "${subject} (${authorName}, ${authorDateAgo})",
+  "git.allowForcePush": true,
+  "git.autoStash": true,
+  "git.branchRandomName.enable": true,
+  "git.defaultBranchName": "master",
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://biomejs.dev": true
+  },
 }

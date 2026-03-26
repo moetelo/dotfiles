@@ -42,7 +42,7 @@ return {
         'neanias/everforest-nvim',
         config = function()
             require('everforest').setup({
-                transparent_background_level = 2,
+                transparent_background_level = 0,
             })
         end,
     },
@@ -69,6 +69,7 @@ return {
 
     {
         'nvim-telescope/telescope.nvim',
+        enabled = false,
         keys = {
             { '<leader>fw', '<cmd>Telescope live_grep<cr>', desc = 'Live grep' },
         },

@@ -5,6 +5,9 @@
     { "key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup" },
     { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup" },
 
+    { "key": "ctrl+tab", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus" },
+    { "key": "ctrl+shift+tab", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
+
     { "key": "ctrl+shift+g", "command": "git.checkout" },
     { "key": "ctrl+shift+s", "command": "workbench.view.scm", "when": "workbench.scm.active" },
     { "key": "ctrl+shift+p", "command": "gitlens.openFileHistory" },

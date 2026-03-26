@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-icon-theme", "Breath2", "-width", "50", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
@@ -74,6 +74,7 @@ static const Key keys[] = {
 
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("thunar") },
 	{ MODKEY,                       XK_s,      spawn,          SHCMD("LC_MONETARY=ru_RU.UTF-8 rofi -show calc") },
+	{ MODKEY,                       XK_semicolon,  spawn,      SHCMD("bemoji --noline") },
 
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("flameshot gui") },
 
@@ -85,13 +86,10 @@ static const Key keys[] = {
 	{ MODKEY,             			XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	// { MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 
 	{ MODKEY,                       XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },

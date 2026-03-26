@@ -45,9 +45,12 @@ thunar --daemon &
 greenclip daemon &
 dunst &
 unclutter &
+solaar -w hide &
 /usr/lib/xfce-polkit/xfce-polkit &
+systemctl --user start voxtype &
 
 ~/scripts/bin/bar.sh &
 
 setup_screen
+trap 'kill $(jobs -p) 2>/dev/null' EXIT
 exec dwm

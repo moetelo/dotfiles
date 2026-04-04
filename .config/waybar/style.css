@@ -1,53 +1,5 @@
-/* https://git.sr.ht/~begs/dotfiles/tree/master/item/.config/waybar */
-/* Keyframes */
+/* dwm-style flat bar */
 
-@keyframes blink-critical {
-    to {
-        /*color: @white;*/
-        background-color: @critical;
-    }
-}
-
-
-/* Styles */
-
-@define-color black    #282828;
-@define-color red    #cc241d;
-@define-color green    #98971a;
-@define-color yellow    #d79921;
-@define-color blue    #458588;
-@define-color purple    #b16286;
-@define-color aqua    #689d6a;
-@define-color gray    #a89984;
-@define-color brgray    #928374;
-@define-color brred    #fb4934;
-@define-color brgreen    #b8bb26;
-@define-color bryellow    #fabd2f;
-@define-color brblue    #83a598;
-@define-color brpurple    #d3869b;
-@define-color braqua    #8ec07c;
-@define-color white    #ebdbb2;
-@define-color bg2    #504945;
-
-@define-color accent #578545;
-
-@define-color warning     @bryellow;
-@define-color critical    @red;
-@define-color mode    @black;
-@define-color unfocused    @bg2;
-@define-color focused    @braqua;
-@define-color inactive    @purple;
-@define-color sound    @brpurple;
-@define-color network    @purple;
-@define-color memory    @braqua;
-@define-color cpu    @green;
-@define-color temp    @brgreen;
-@define-color layout    @bryellow;
-@define-color battery    @aqua;
-@define-color date    @black;
-@define-color time    @white;
-
-/* Reset all styles */
 * {
     border: none;
     border-radius: 0;
@@ -59,152 +11,59 @@
     -gtk-icon-shadow: none;
 }
 
-/* The whole bar */
 #waybar {
-    /* background: rgba(40, 40, 40, 0.8784313725); #282828e0 */
-    background: rgba(0, 0, 0, 0.8);
-    color: @white;
-    font-family: Fira Code Nerd Font, Siji;
-    font-size: 18px;
-    /*font-weight: bold;*/
+    background: #222222;
+    color: #bbbbbb;
+    font-family: SetoFontFixed, monospace;
+    font-size: 20px;
 }
 
-/* Each module */
+/* All modules: flat, no background, pipe separators */
 #battery,
 #clock,
-#cpu,
 #language,
-#memory,
-#mode,
-#network,
 #pulseaudio,
-#temperature,
 #tray,
-#backlight,
-#idle_inhibitor,
-#disk,
-#user,
-#mpris {
-    padding-left: 8pt;
-    padding-right: 8pt;
-}
-
-/* Each critical module */
-#mode,
-#memory.critical,
-#cpu.critical,
-#temperature.critical,
-#battery.critical.discharging {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-name: blink-critical;
-    animation-duration: 1s;
-}
-
-/* Each warning */
-#network.disconnected,
-#memory.warning,
-#cpu.warning,
-#temperature.warning,
-#battery.warning.discharging {
-    color: @warning;
-}
-
-/* And now modules themselves in their respective order */
-
-/* Current sway mode (resize etc) */
-#mode {
-    color: @white;
-    background: @mode;
-}
-
-/* Workspaces stuff */
-#workspaces button {
-    /*font-weight: bold;*/
-    padding-left: 2pt;
-    padding-right: 2pt;
-    color: @white;
+#custom-voxtype {
+    padding-left: 8px;
+    padding-right: 8px;
     background: transparent;
+    color: #bbbbbb;
+    border-left: none;
 }
 
-#workspaces button.visible {
-    background: @accent;
+/* Pipe separator between right-side modules */
+#battery,
+#pulseaudio,
+#language,
+#clock {
+    border-left: 1px solid #444444;
+}
+
+/* Workspaces: match dwm tag style */
+#workspaces button {
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #bbbbbb;
+    background: #222222;
+}
+
+#workspaces button.active {
+    color: #eeeeee;
+    background: #578545;
 }
 
 #workspaces button.urgent {
-    color: @black;
-    background: @warning;
+    color: #eeeeee;
+    background: #cc241d;
 }
 
-#workspaces button.empty:not(.visible) {
+#workspaces button.empty:not(.active) {
     color: transparent;
     background: transparent;
 }
 
-/* Style when cursor is on the button */
 #workspaces button:hover {
-    background: @black;
-    color: @white;
-}
-
-#window {
-    margin-right: 35pt;
-    margin-left: 35pt;
-}
-
-#pulseaudio {
-    background: @sound;
-    color: @black;
-}
-
-#network {
-    /* background: @network; */
-    color: @white;
-    /* border: 1px solid red; */
-    padding-left: 0;
-    padding-right: 12pt;
-
-}
-
-#memory {
-    background: @memory;
-    color: @black;
-}
-
-#cpu {
-    background: @cpu;
-    color: @white;
-}
-
-#temperature {
-    background: @temp;
-    color: @black;
-}
-
-#language {
-    /* background: @layout; */
-    background: transparent;
-    color: @white;
-    min-width: 20px;
-}
-
-#battery {
-    background: @battery;
-    color: @black;
-    padding-right: 12pt;
-}
-
-/* #tray {
-    background: @date;
-} */
-
-#clock.date {
-    background: @date;
-    color: @white;
-}
-
-#clock.time {
-    background: @time;
-    color: @black;
+    background: #444444;
+    color: #eeeeee;
 }

@@ -50,6 +50,7 @@ export PATH
 alias ls='ls --color=auto'
 alias ll='ls -lha'
 alias grep='grep --color=auto'
+alias mv='mv --update=none-fail'
 alias c='bat --plain'
 
 sum-num() {

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:wiki.hyprland.org)",
+      "WebFetch(domain:wiki.hypr.land)"
+    ]
+  }
+}

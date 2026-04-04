@@ -93,7 +93,7 @@
   "dart.flutterSdkPath": "/home/mikhail/.flutter/flutter",
   "mdb.mcp.server": "autoStartDisabled",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "Dark Modern",
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "gitlens.views.fileHistory.mode": "contributors",
   "workbench.editor.enablePreview": false,
@@ -112,4 +112,5 @@
     "https://json-schema.org/": true,
     "https://biomejs.dev": true
   },
+  "workbench.editor.empty.hint": "hidden",
 }

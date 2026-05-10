@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""List explicitly installed pacman packages sorted by total size (including all deps) descending."""
+
+import subprocess
+
+
+def fmt(b):
+    if b >= 1024**3:
+        return f"{b/1024**3:.2f} GiB"
+    elif b >= 1024**2:
+        return f"{b/1024**2:.2f} MiB"
+    else:
+        return f"{b/1024:.2f} KiB"
+
+
+# Build size cache for all installed packages at once
+size_cache = {}
+result = subprocess.run(['expac', '%n\t%m'], capture_output=True, text=True)
+for line in result.stdout.strip().split('\n'):
+    if '\t' in line:
+        name, size = line.split('\t', 1)
+        size_cache[name] = int(size)  # bytes
+
+# Get explicitly installed packages
+explicit = subprocess.run(['pacman', '-Qqe'], capture_output=True, text=True).stdout.strip().split('\n')
+
+results = []
+for pkg in explicit:
+    deps = subprocess.run(['pactree', '-u', pkg], capture_output=True, text=True).stdout.strip().split('\n')
+    total = sum(size_cache.get(d, 0) for d in deps if d)
+    results.append((total, pkg))
+
+results.sort(reverse=True)
+
+for size, pkg in results:
+    print(f"{fmt(size):<12} {pkg}")

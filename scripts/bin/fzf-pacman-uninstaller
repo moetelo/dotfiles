@@ -1,0 +1,12 @@
+#!/bin/env bash
+
+fzf-pacman-uninstall-list() {
+    echo "$1" | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns
+}
+
+package-list() {
+    expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort --reverse | awk '{print $3}'
+}
+
+
+fzf-pacman-uninstall-list "$(package-list)"

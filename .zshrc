@@ -27,8 +27,6 @@ zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*:(ssh|scp|sftp|rsync):*' known-hosts-files ''
 zstyle ':completion:*' list-prompt ''
 
-source ~/scripts/proxy-utils.sh
-source ~/scripts/fzf-utils.sh
 source ~/scripts/think.sh
 source ~/vpn.sh
 

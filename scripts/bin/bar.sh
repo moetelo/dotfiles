@@ -8,13 +8,6 @@ render() {
     local now=$(date +"%F %R")
     local bat=$(cat /sys/class/power_supply/BAT0/capacity)
 
-    local voxtype_status=$(voxtype status --icon-theme nerd-font --format json --extended)
-    local voxtype_status_alt=$(echo "$voxtype_status" | jq -r '.alt')
-
-    if [[ "$voxtype_status_alt" != 'idle' ]]; then
-        parts+=("$(echo "$voxtype_status" | jq -r '.model') $(echo "$voxtype_status" | jq -r '.text')")
-    fi
-
     parts+=("󰁹 $bat%" "󰕾 $volume" "$layout" "$now")
 
     local result
@@ -27,9 +20,6 @@ xkb-switch -W \
 
 pactl subscribe \
     | grep --line-buffered --fixed-strings 'sink' \
-    | while read -r _; do render; done &
-
-stdbuf -oL voxtype status --follow \
     | while read -r _; do render; done &
 
 while true; do

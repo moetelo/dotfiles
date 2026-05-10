@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-icon-theme", "Breath2", "-width", "50", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 
 static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
@@ -116,8 +116,8 @@ static const Key keys[] = {
 	{ 0, 							XF86XK_MonBrightnessUp, spawn, 	 SHCMD("brightnessctl set 1%+") },
 	{ MODKEY,                       XK_F7, spawn,     				 SHCMD("brightnessctl set 10%-") },
 	{ MODKEY,                       XK_F8, spawn,     				 SHCMD("brightnessctl set 10%+") },
-	{ MODKEY,                       XK_F11, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 14 - 10") },
-	{ MODKEY,                       XK_F12, spawn,     				 SHCMD("ddcutil setvcp 10 --bus 14 + 10") },
+	{ MODKEY,                       XK_F11, spawn,     				 SHCMD("ddcutil setvcp 10 --model 'LG ULTRAGEAR' - 10") },
+	{ MODKEY,                       XK_F12, spawn,     				 SHCMD("ddcutil setvcp 10 --model 'LG ULTRAGEAR' + 10") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

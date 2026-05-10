@@ -21,7 +21,7 @@ zle -N clear-screen-and-scrollback
 bindkey '^L' clear-screen-and-scrollback
 bindkey '^H' backward-kill-word
 
-export EDITOR='nvim'
+export EDITOR=code
 export MANPAGER='nvim +Man! -c "set laststatus=0"'
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*:(ssh|scp|sftp|rsync):*' known-hosts-files ''
@@ -39,7 +39,7 @@ export BUN_INSTALL="$HOME/.bun"
 export GO_BIN="$HOME/go/bin/"
 export GHC_BIN="$HOME/.ghcup/ghc/9.6.7/bin"
 export FLUTTER_BIN="$HOME/.flutter/flutter/bin"
-path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $GHC_BIN
+path=("$HOME/scripts/bin/" "$HOME/.local/bin/" "$HOME/.npm-global/bin/" "$BUN_INSTALL/bin" $PNPM_HOME $CARGO_HOME $GO_BIN $GHC_BIN
 /opt/android-sdk/platform-tools/
 /opt/android-sdk/cmdline-tools/latest/bin/
 $FLUTTER_BIN  $path)

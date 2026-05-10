@@ -47,7 +47,6 @@ dunst &
 unclutter &
 solaar -w hide &
 /usr/lib/xfce-polkit/xfce-polkit &
-systemctl --user start voxtype &
 
 ~/scripts/bin/bar.sh &
 

@@ -3,23 +3,23 @@
 think() {
     if [[ -z "$1" ]]; then
         think-move-unchecked
-        $EDITOR $HOME/thoughts/$(date --iso-8601).md
+        ${=EDITOR} $HOME/thoughts/$(date --iso-8601).md
         return
     fi
 
     if [[ -f "$HOME/thoughts/$1.md" ]]; then
-        $EDITOR $HOME/thoughts/$1.md
+        ${=EDITOR} $HOME/thoughts/$1.md
         return
     fi
 
     # relative date support: `think -1` -> think 1 day ago
     if [[ "$1" =~ "^[-0-9]+$" ]]; then
         fname=$(date --iso-8601 --date="$1 day")
-        $EDITOR $HOME/thoughts/$fname.md
+        ${=EDITOR} $HOME/thoughts/$fname.md
         return
     fi
 
-    $EDITOR $HOME/thoughts/$1.md
+    ${=EDITOR} $HOME/thoughts/$1.md
 }
 
 previous-thought() {

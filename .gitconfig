@@ -10,5 +10,3 @@
 [pull]
     rebase = true
     ff = true
-[core]
-	pager = hunk pager

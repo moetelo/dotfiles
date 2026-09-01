@@ -1,4 +1,5 @@
 {
+  "chat.disableAIFeatures": true,
   "breadcrumbs.enabled": false,
   "mdb.showMongoDBPlaygrounds": false,
   "mdb.showMongoDBConnectionExplorer": true,
@@ -32,6 +33,10 @@
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
   "editor.selectionClipboard": false,
   "gitlens.codeLens.enabled": false,
+  "gitlens.gitCommands.skipConfirmations": [],
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
   "files.associations": {
     "config": "shellscript",
     "*.json": "jsonc",
@@ -42,7 +47,7 @@
     "config-hypr": "jsonc",
     "*.caddy": "caddyfile"
   },
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "editor.stickyScroll.enabled": false,
   "terminal.integrated.stickyScroll.enabled": false,
@@ -139,7 +144,6 @@
   "gitlens.blame.highlight.enabled": false,
   "gitlens.graph.statusBar.enabled": false,
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.hovers.autolinks.enabled": false,
   "gitlens.cloudIntegrations.enabled": false,
   "gitlens.gitkraken.mcp.autoEnabled": false,
   "gitlens.graph.pullRequests.enabled": false,
@@ -151,4 +155,13 @@
   "gitlens.codeLens.recentChange.enabled": false,
   "terminal.integrated.initialHint": false,
   "git.openRepositoryInParentFolders": "never",
+  "workbench.startupEditor": "none",
+  "gitlens.views.fileHistory.mode": "contributors",
+  "editor.pasteAs.preferences": [
+  ],
+  "yaml.disableSchemaDetection": [
+    "azure-pipelines.yml",
+    "azure-pipelines.yaml"
+  ],
+  "claudeCode.preferredLocation": "panel",
 }

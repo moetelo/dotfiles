@@ -21,7 +21,8 @@ zle -N clear-screen-and-scrollback
 bindkey '^L' clear-screen-and-scrollback
 bindkey '^H' backward-kill-word
 
-export EDITOR=code
+export EDITOR='code --wait'
+export VISUAL='code --wait'
 export MANPAGER='nvim +Man! -c "set laststatus=0"'
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*:(ssh|scp|sftp|rsync):*' known-hosts-files ''

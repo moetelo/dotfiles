@@ -1,0 +1,17 @@
+#!/bin/env bash
+
+# One-shot reboot into Windows: set EFI BootNext to the Windows Boot Manager
+# entry, then reboot. The change is one-time — the next boot returns to rEFInd.
+
+set -euo pipefail
+
+num=$(efibootmgr | sed -n 's/^Boot\([0-9A-Fa-f]\{4\}\)\*\? Windows Boot Manager.*/\1/p' | head -1)
+
+if [ -z "$num" ]; then
+	echo "reboot-windows: no 'Windows Boot Manager' EFI entry found" >&2
+	exit 1
+fi
+
+echo "Setting BootNext to $num (Windows Boot Manager) and rebooting..."
+sudo efibootmgr --bootnext "$num" >/dev/null
+sudo systemctl reboot

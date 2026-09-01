@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# transcribe <video|audio> [lang] — speech-to-text via whisper-cpp (default lang: ru).
+# Writes <input>.txt and <input>.srt next to the input file.
+# Model (~574MB) is auto-downloaded to ~/.cache/whisper.cpp on first run.
+set -uo pipefail
+
+if [ $# -lt 1 ] || [ -z "$1" ]; then
+  echo "usage: transcribe <video|audio> [lang]" >&2
+  exit 2
+fi
+
+in=$1
+lang=${2:-ru}
+model=$HOME/.cache/whisper.cpp/ggml-large-v3-turbo-q5_0.bin
+
+[ -f "$in" ] || { echo "transcribe: no such file: $in" >&2; exit 1; }
+
+if [ ! -f "$model" ]; then
+  echo "downloading model to $model ..." >&2
+  curl -L --create-dirs -o "$model" \
+    https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo-q5_0.bin || exit 1
+fi
+
+wav=$(mktemp --suffix=.wav)
+trap 'rm -f "$wav"' EXIT
+
+ffmpeg -y -v error -i "$in" -vn -ac 1 -ar 16000 -c:a pcm_s16le "$wav" || exit 1
+whisper-cli -m "$model" -l "$lang" -f "$wav" -otxt -osrt -of "${in%.*}" -np
